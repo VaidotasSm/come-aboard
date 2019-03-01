@@ -4,17 +4,23 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Switch, Redirect, Route} from 'react-router';
 import {BrowserRouter, Link} from 'react-router-dom';
-
-const App = () => (
-	<div className="App">
-		<h1 className="App-Title">Hello World!</h1>
-	</div>
-);
+import '../css/index.scss';
 
 const MainPageTemplate = (props) => {
 	return (
 		<div>
-			<div>Header</div>
+			<section className="hero is-primary">
+				<div className="hero-body">
+					<div className="container">
+						<h1 className="title">
+							Primary title
+						</h1>
+						<h2 className="subtitle">
+							Primary subtitle
+						</h2>
+					</div>
+				</div>
+			</section>
 			<div>
 				{props.children}
 			</div>
