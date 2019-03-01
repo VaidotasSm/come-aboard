@@ -1,0 +1,3 @@
+[submodule "aboard-api"]
+	path = aboard-api
+	url = https://github.com/VaidotasSm/come-aboard/aboard-api
