@@ -6,15 +6,10 @@ import { Redirect } from '@reach/router';
 
 export default function WizardPage() {
 	const { state } = useContext(GlobalReducerContext);
-	if (!state.wizard) {
-		return <Redirect to="/" noThrow />;
+	if (!state.name || !state.wizard) {
+		return <Redirect to="/" noThrow/>;
 	}
 
-	return (
-		<div>
-			<div className="title is-2">Wizard</div>
-			<div className="title is-3">Steps: {state.wizard.steps.length}</div>
-		</div>
-	);
+	return <Redirect to="/wizard/steps/0" noThrow/>;
 }
 

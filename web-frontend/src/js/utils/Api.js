@@ -18,3 +18,13 @@ export function crateWizard({ name, team }, dispatch) {
 		.catch((error) => dispatch({ type: ActionTypes.WIZARD_START_ERROR, error }));
 }
 
+export function getWizard(name, dispatch) {
+	fetch(`${basePath}/wizard/${name}`, {
+		method: 'get'
+	})
+		.then((res) => res.json())
+		.then((response) => {
+			dispatch({ type: ActionTypes.WIZARD_START_SUCCESS, response });
+		})
+		.catch((error) => dispatch({ type: ActionTypes.WIZARD_START_ERROR, error }));
+}

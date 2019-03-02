@@ -11,6 +11,7 @@ import WizardPage from './features/wizard/WizardPage';
 import { Router } from '@reach/router';
 import mockApi from './utils/ApiMocks';
 import ErrorBoundary from './features/ErrorBoundry';
+import WizardStepPage from './features/wizard/WizardStepPage';
 
 mockApi();
 
@@ -21,6 +22,7 @@ ReactDOM.render(
 				<Router>
 					<HomePage path="/"/>
 					<WizardPage path="/wizard"/>
+					<WizardStepPage path="/wizard/steps/:step"/>
 					<NotFoundPage default/>
 				</Router>
 			</MainPageLayout>

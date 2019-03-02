@@ -5,6 +5,7 @@ import { navigate } from '@reach/router';
 
 const ActionTypes = {
 	WIZARD_START: 'START_WIZARD',
+	WIZARD_RESUME: 'WIZARD_RESUME',
 	WIZARD_START_SUCCESS: 'WIZARD_START_SUCCESS',
 	WIZARD_START_ERROR: 'WIZARD_START_ERROR'
 };
@@ -12,6 +13,7 @@ const ActionTypes = {
 function reducer(state, action) {
 	switch (action.type) {
 	case ActionTypes.WIZARD_START:
+	case ActionTypes.WIZARD_RESUME:
 		return { ...state, name: action.value, isLoading: true };
 	case ActionTypes.WIZARD_START_SUCCESS:
 		navigate('/wizard');
