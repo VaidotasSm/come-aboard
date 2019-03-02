@@ -28,7 +28,7 @@ export default function StepItem({ item }) {
 
 	return <>
 		<div className="step-item item">
-			{item.item} - {item.status}, {checkColor}, {problemColor}
+			{item.item}
 		</div>
 
 		<div className="step-item step-item-actions">

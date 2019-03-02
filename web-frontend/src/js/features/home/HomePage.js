@@ -1,8 +1,7 @@
 'use strict';
 
 import React, { useContext, useState } from 'react';
-import { Actions, ActionTypes, GlobalReducerContext } from '../../utils/GlobalState';
-import * as Api from '../../utils/Api';
+import { Actions, GlobalReducerContext } from '../../utils/GlobalState';
 
 export default function HomePage() {
 	const { state, dispatch } = useContext(GlobalReducerContext);
@@ -32,7 +31,7 @@ export default function HomePage() {
 		<div>
 			<div className="level">
 				<div className="level-item has-text-centered">
-					<div className="title is-2">Welcome</div>
+					<div className="title is-2">Start your Journey</div>
 				</div>
 			</div>
 
@@ -45,7 +44,7 @@ export default function HomePage() {
 					/>
 				</div>
 				<div className="item">
-					<div className={`select is-primary ${errors.team ? 'is-danger' : ''}`}>
+					<div className={`select is-fullwidth is-primary ${errors.team ? 'is-danger' : ''}`}>
 						<select onChange={handleTeamChanged} value={team}>
 							<option value=""></option>
 							<option value="hbr">HBR</option>

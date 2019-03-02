@@ -3,7 +3,7 @@
 import React, { useContext } from 'react';
 import { GlobalReducerContext } from '../../utils/GlobalState';
 import { Redirect } from '@reach/router';
-import StepButtons from './components/StepButtons';
+import StepActions from './components/StepActions';
 import StepDisplay from './components/StepDisplay';
 
 export default function WizardStepPage(props) {
@@ -15,13 +15,13 @@ export default function WizardStepPage(props) {
 	const stepNumber = parseInt(props.step);
 	const stepObj = state.wizard.steps[stepNumber];
 	return (
-		<div>
+		<div className="step-page">
 			<div>
 				<StepDisplay step={stepObj}/>
 			</div>
 
 			<div>
-				<StepButtons stepNumber={stepNumber} totalSteps={state.wizard.steps.length}/>
+				<StepActions stepNumber={stepNumber} totalSteps={state.wizard.steps.length}/>
 			</div>
 		</div>
 	);
