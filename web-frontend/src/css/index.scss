@@ -25,3 +25,20 @@ $footer-padding: 1rem 1rem 3rem !default;
 		max-width: 300px;
 	}
 }
+
+.step-display {
+	margin: 1em 0 2em 0;
+}
+
+.step-items {
+	display: grid;
+	grid-template-columns: 2fr 1fr;
+
+	.step-item-actions {
+		display: flex;
+		.step-item-action{
+			cursor: pointer;
+			margin-left: 1em;
+		}
+	}
+}

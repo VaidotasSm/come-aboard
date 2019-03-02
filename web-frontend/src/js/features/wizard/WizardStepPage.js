@@ -4,6 +4,7 @@ import React, { useContext } from 'react';
 import { GlobalReducerContext } from '../../utils/GlobalState';
 import { Redirect } from '@reach/router';
 import StepButtons from './components/StepButtons';
+import StepDisplay from './components/StepDisplay';
 
 export default function WizardStepPage(props) {
 	const { state, dispatch } = useContext(GlobalReducerContext);
@@ -16,15 +17,7 @@ export default function WizardStepPage(props) {
 	return (
 		<div>
 			<div>
-				<div className="title is-2">{stepObj.name}</div>
-				<div>
-					<p>{stepObj.description}</p>
-				</div>
-				<div>
-					{stepObj.checklist && stepObj.checklist.map(item => (
-						<div key={item.item}>{item.item} - {item.status}</div>
-					))}
-				</div>
+				<StepDisplay step={stepObj}/>
 			</div>
 
 			<div>
