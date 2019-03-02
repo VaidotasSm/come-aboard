@@ -1,4 +1,5 @@
 import Vapor
+import Foundation
 
 /// Register your application's routes here.
 public func routes(_ router: Router) throws {
@@ -28,6 +29,12 @@ public func routes(_ router: Router) throws {
             return .ok
         }
     };
+    
+    router.post("wizard") { req -> Future<Response> in
+        return Stage(name: "welcome", description: "start you jorney").encode(status: .created, for: req);
+
+    }
+
     
 }
 
