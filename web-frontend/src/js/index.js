@@ -2,29 +2,26 @@
 
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Route, Switch } from 'react-router';
-import { BrowserRouter } from 'react-router-dom';
 import '../css/index.scss';
-import mockApi from './utils/api-mocks';
 import MainPageLayout from './ui/MainPageLayout';
 import HomePage from './features/home/HomePage';
 import NotFoundPage from './features/NotFoundPage';
+import { GlobalReducerProvider } from './utils/GlobalState';
+import WizardPage from './features/wizard/WizardPage';
+import { Router } from '@reach/router';
+import mockApi from './utils/ApiMocks';
 
 mockApi();
 
-function ExamplePage(props) {
-	return <div>Empty Example Page</div>
-}
-
 ReactDOM.render(
-	<BrowserRouter>
+	<GlobalReducerProvider>
 		<MainPageLayout>
-			<Switch>
-				<Route exact path='/' component={HomePage}/>
-				<Route exact path='/example' component={ExamplePage}/>
-				<Route component={NotFoundPage}/>
-			</Switch>
+			<Router>
+				<HomePage path="/"/>
+				<WizardPage path="/wizard"/>
+				<NotFoundPage default/>
+			</Router>
 		</MainPageLayout>
-	</BrowserRouter>,
+	</GlobalReducerProvider>,
 	document.getElementById('app')
 );

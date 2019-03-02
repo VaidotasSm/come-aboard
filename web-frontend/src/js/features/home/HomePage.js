@@ -1,11 +1,40 @@
 'use strict';
 
-import React from 'react';
+import React, { useContext, useState } from 'react';
+import { ActionTypes, GlobalReducerContext } from '../../utils/GlobalState';
 
-export default function HomePage(props) {
+export default function HomePage() {
+	const { dispatch } = useContext(GlobalReducerContext);
+	const [name, setName] = useState('');
+
+	const handleNameChanged = (event) => {
+		setName(event.target.value);
+	};
+	const handleStartWizard = () => {
+		if (!name) {
+			return;
+		}
+
+		dispatch({ type: ActionTypes.START_WIZARD, name });
+	};
+
 	return (
 		<div>
-			<div className="title is-2">Home Page</div>
+			<div className="title is-2">Welcome</div>
+
+			<div className="boarding-start">
+				<div className="item field">
+					<input
+						className="input is-primary" type="text" placeholder="Your Name"
+						value={name} onChange={handleNameChanged}
+					/>
+				</div>
+				<div className="item">
+					<button className="button is-primary is-fullwidth" onClick={handleStartWizard}>
+						Start
+					</button>
+				</div>
+			</div>
 		</div>
 	);
 };
