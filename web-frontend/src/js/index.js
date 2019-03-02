@@ -10,18 +10,21 @@ import { GlobalReducerProvider } from './utils/GlobalState';
 import WizardPage from './features/wizard/WizardPage';
 import { Router } from '@reach/router';
 import mockApi from './utils/ApiMocks';
+import ErrorBoundary from './features/ErrorBoundry';
 
 mockApi();
 
 ReactDOM.render(
-	<GlobalReducerProvider>
-		<MainPageLayout>
-			<Router>
-				<HomePage path="/"/>
-				<WizardPage path="/wizard"/>
-				<NotFoundPage default/>
-			</Router>
-		</MainPageLayout>
-	</GlobalReducerProvider>,
+	<ErrorBoundary>
+		<GlobalReducerProvider>
+			<MainPageLayout>
+				<Router>
+					<HomePage path="/"/>
+					<WizardPage path="/wizard"/>
+					<NotFoundPage default/>
+				</Router>
+			</MainPageLayout>
+		</GlobalReducerProvider>
+	</ErrorBoundary>,
 	document.getElementById('app')
 );

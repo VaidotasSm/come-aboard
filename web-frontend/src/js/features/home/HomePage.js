@@ -2,6 +2,7 @@
 
 import React, { useContext, useState } from 'react';
 import { ActionTypes, GlobalReducerContext } from '../../utils/GlobalState';
+import * as Api from '../../utils/Api';
 
 export default function HomePage() {
 	const { dispatch } = useContext(GlobalReducerContext);
@@ -15,7 +16,8 @@ export default function HomePage() {
 			return;
 		}
 
-		dispatch({ type: ActionTypes.START_WIZARD, name });
+		dispatch({ type: ActionTypes.WIZARD_START, name });
+		Api.crateWizard(name, dispatch);
 	};
 
 	return (
