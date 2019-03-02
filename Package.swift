@@ -12,8 +12,8 @@ let package = Package(
     ],
     targets: [
         .target(name: "App", dependencies: ["FluentSQLite", "Vapor"], path: "./aboard-api/"),
-        .target(name: "Run", dependencies: ["App"]),
-        .testTarget(name: "AppTests", dependencies: ["App"])
+        .target(name: "Run", dependencies: ["App"], "./aboard-api/"),
+        .testTarget(name: "AppTests", dependencies: ["App"], "./aboard-api/")
     ]
 )
 
