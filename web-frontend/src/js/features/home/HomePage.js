@@ -5,7 +5,7 @@ import { ActionTypes, GlobalReducerContext } from '../../utils/GlobalState';
 import * as Api from '../../utils/Api';
 
 export default function HomePage() {
-	const { dispatch } = useContext(GlobalReducerContext);
+	const { state, dispatch } = useContext(GlobalReducerContext);
 	const [name, setName] = useState('');
 
 	const handleNameChanged = (event) => {
@@ -20,6 +20,7 @@ export default function HomePage() {
 		Api.crateWizard(name, dispatch);
 	};
 
+	const buttonStyles = "button is-primary is-fullwidth" + (state.isLoading ? ' is-loading' : '');
 	return (
 		<div>
 			<div className="title is-2">Welcome</div>
@@ -32,7 +33,7 @@ export default function HomePage() {
 					/>
 				</div>
 				<div className="item">
-					<button className="button is-primary is-fullwidth" onClick={handleStartWizard}>
+					<button className={buttonStyles} onClick={handleStartWizard}>
 						Start
 					</button>
 				</div>
