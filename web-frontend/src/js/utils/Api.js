@@ -1,9 +1,10 @@
 'use strict';
 
 import { ActionTypes } from './GlobalState';
+
 const basePath = 'http://localhost:8080/api';
 
-export function crateWizard(name, dispatch) {
+export function crateWizard({ name, team }, dispatch) {
 	fetch(`${basePath}/wizard`, {
 		method: 'post',
 		body: JSON.stringify({

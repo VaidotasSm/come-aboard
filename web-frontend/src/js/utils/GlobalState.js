@@ -12,7 +12,7 @@ const ActionTypes = {
 function reducer(state, action) {
 	switch (action.type) {
 	case ActionTypes.WIZARD_START:
-		return { ...state, name: action.name, isLoading: true };
+		return { ...state, name: action.value, isLoading: true };
 	case ActionTypes.WIZARD_START_SUCCESS:
 		navigate('/wizard');
 		return { ...state, wizard: action.response, isLoading: false };

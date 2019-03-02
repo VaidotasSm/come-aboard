@@ -1,4 +1,3 @@
-
 $footer-padding: 1rem 1rem 3rem !default;
 
 @import '../../node_modules/bulma/bulma.sass';
@@ -9,15 +8,19 @@ $footer-padding: 1rem 1rem 3rem !default;
 
 .boarding-start {
 	margin: 0 3em 0 3em;
-	height: 100px;
+	width: 100%;
+	min-height: 150px;
+
 	display: flex;
-	flex-wrap: wrap;
-	justify-content: center;
+	flex-direction: column;
+	justify-content: space-between;
+	align-items: stretch;
 
 	.item {
 		max-width: 150px;
 		flex: 1;
 	}
+
 	.item.field {
 		max-width: 300px;
 	}
