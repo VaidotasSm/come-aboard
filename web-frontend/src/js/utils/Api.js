@@ -4,18 +4,12 @@ import { ActionTypes } from './GlobalState';
 
 const basePath = 'http://localhost:8080/api';
 
-export function crateWizard({ name, team }, dispatch) {
-	fetch(`${basePath}/wizard`, {
+export function crateWizard({ name, team }) {
+	return fetch(`${basePath}/wizard`, {
 		method: 'post',
-		body: JSON.stringify({
-			name
-		})
+		body: JSON.stringify({ name, team })
 	})
-		.then((res) => res.json())
-		.then((response) => {
-			dispatch({ type: ActionTypes.WIZARD_START_SUCCESS, response });
-		})
-		.catch((error) => dispatch({ type: ActionTypes.WIZARD_START_ERROR, error }));
+		.then((res) => res.json());
 }
 
 export function getWizard(name, dispatch) {

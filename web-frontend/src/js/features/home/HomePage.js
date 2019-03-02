@@ -1,7 +1,7 @@
 'use strict';
 
 import React, { useContext, useState } from 'react';
-import { ActionTypes, GlobalReducerContext } from '../../utils/GlobalState';
+import { Actions, ActionTypes, GlobalReducerContext } from '../../utils/GlobalState';
 import * as Api from '../../utils/Api';
 
 export default function HomePage() {
@@ -25,8 +25,7 @@ export default function HomePage() {
 			return;
 		}
 
-		dispatch({ type: ActionTypes.WIZARD_START, value: name });
-		Api.crateWizard({ name, team }, dispatch);
+		Actions.startWizard({ name, team }, dispatch);
 	};
 
 	return (

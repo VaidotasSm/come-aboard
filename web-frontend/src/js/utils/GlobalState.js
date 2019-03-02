@@ -2,12 +2,34 @@
 
 import React, { useReducer } from 'react';
 import { navigate } from '@reach/router';
+import * as Api from './Api';
 
 const ActionTypes = {
 	WIZARD_START: 'START_WIZARD',
 	WIZARD_RESUME: 'WIZARD_RESUME',
 	WIZARD_START_SUCCESS: 'WIZARD_START_SUCCESS',
-	WIZARD_START_ERROR: 'WIZARD_START_ERROR'
+	WIZARD_START_ERROR: 'WIZARD_START_ERROR',
+	WIZARD_ITEM_MODIFY: 'WIZARD_ITEM_MODIFY'
+};
+
+const Actions = {
+	startWizard({ name, team }, dispatch) {
+		dispatch({ type: ActionTypes.WIZARD_START, value: name });
+		Api.crateWizard({ name, team })
+			.then((response) => {
+				dispatch({ type: ActionTypes.WIZARD_START_SUCCESS, response });
+			})
+			.catch((error) => dispatch({ type: ActionTypes.WIZARD_START_ERROR, error }));
+	},
+	modifyWizardItemStatus(itemId, status, dispatch) {
+		dispatch({
+			type: ActionTypes.WIZARD_ITEM_MODIFY,
+			value: {
+				itemId,
+				status
+			}
+		});
+	}
 };
 
 function reducer(state, action) {
@@ -20,6 +42,28 @@ function reducer(state, action) {
 		return { ...state, wizard: action.response, isLoading: false };
 	case ActionTypes.WIZARD_START_ERROR:
 		return { ...state, error: action.error, isLoading: false };
+	case ActionTypes.WIZARD_ITEM_MODIFY: {
+		const itemId = action.value.itemId;
+
+		const steps = state.wizard.steps.map(step => {
+			if (!step.checklist) {
+				return step;
+			}
+			return {
+				...step,
+				checklist: step.checklist.map(c => {
+					if (c.id === itemId) {
+						return {...c, status: action.value.status}
+					}
+
+					return c;
+				})
+			};
+		});
+
+		const wizard = { ...state.wizard, steps };
+		return { ...state, wizard, timestamp: new Date()};
+	}
 	default:
 		throw new Error('Unexpected action');
 	}
@@ -37,6 +81,7 @@ function GlobalReducerProvider({ children }) {
 }
 
 export {
+	Actions,
 	ActionTypes,
 	GlobalReducerContext,
 	GlobalReducerProvider

@@ -17,19 +17,19 @@ const userWizardResponse =(name) =>  ({
 		{
 			name: 'Step 1',
 			checklist: [
-				{ item: 'Do this thing', status: null },
-				{ item: 'Do other thing', status: 'done' },
-				{ item: 'Do something else', status: 'question' }
+				{ id: 1, item: 'Do this thing', status: null },
+				{ id: 2, item: 'Do other thing', status: 'done' },
+				{ id: 3, item: 'Do something else', status: 'question' }
 			]
 		},
 		{
 			name: 'Step 2',
 			checklist: [
-				{ item: 'Do this thing', status: null },
-				{ item: 'Do other thing', status: 'done' },
-				{ item: 'Do something else', status: 'question' },
-				{ item: 'More things', status: null },
-				{ item: 'Even more things', status: null }
+				{ id: 4, item: 'Do this thing', status: null },
+				{ id: 5, item: 'Do other thing', status: 'done' },
+				{ id: 6, item: 'Do something else', status: 'question' },
+				{ id: 7, item: 'More things', status: null },
+				{ id: 8, item: 'Even more things', status: null }
 			]
 		},
 		{
