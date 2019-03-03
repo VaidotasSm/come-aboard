@@ -56,7 +56,7 @@ const userWizardResponse = (name) => ({
 				stepItem(`Create your account via iCloud using your Harbortouch email (System & Preferences > iCloud > Create Apple ID) `),
 				stepItem(`Sign into the iTunes or an App Store, find a free app, and try to download it`),
 				stepItem(`This will prompt you to sign in with your Apple ID`),
-				stepItem(`Finalize your payment details as listed below`),
+				stepItem(`Finalize your payment details as listed below`)
 			]
 		},
 		{
@@ -71,8 +71,9 @@ const userWizardResponse = (name) => ({
 			name: 'Enable 2 Factor authentication',
 			checklist: [
 				stepItem(`https://appleid.apple.com/account/manage`),
-				stepItem(`If you will run into any problems regarding billing information - borrow a test card from Vilius and use it to complete the registration.`),
-			]
+				stepItem(`If you will run into any problems regarding billing information - borrow a test card from Vilius and use it to complete the registration.`)
+			],
+			mustComplete: true
 		},
 		{
 			name: 'Done',

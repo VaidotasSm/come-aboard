@@ -3,21 +3,24 @@
 import React from 'react';
 import { navigate } from '@reach/router';
 
-export default function StepActions({ stepNumber, totalSteps }) {
+export default function StepActions({ stepNumber, totalSteps, disableNext }) {
 
-	const handleStepNext = () => {
-		if (stepNumber >= totalSteps) {
-			return;
-		}
-		navigate(`/wizard/steps/${stepNumber + 1}`);
-	};
 	const handleStepPrev = () => {
 		if (stepNumber <= 0) {
 			return;
 		}
 		navigate(`/wizard/steps/${stepNumber - 1}`);
 	};
+	const handleStepNext = () => {
+		if (stepNumber >= totalSteps || disableNext) {
+			return;
+		}
+		navigate(`/wizard/steps/${stepNumber + 1}`);
+	};
 	const handleFinish = () => {
+		if (disableNext) {
+			return;
+		}
 		navigate('/');
 	};
 
@@ -29,11 +32,15 @@ export default function StepActions({ stepNumber, totalSteps }) {
 			</div>
 			<div>
 				{(stepNumber < totalSteps - 1) &&
-				<button className="button is-primary" onClick={handleStepNext}>Next</button>}
+				<button className="button is-primary" onClick={handleStepNext} disabled={disableNext}>
+					Next
+				</button>}
 			</div>
 			<div>
 				{(stepNumber === totalSteps - 1) &&
-				<button className="button is-primary" onClick={handleFinish}>Finish</button>}
+				<button className="button is-primary" onClick={handleFinish} disabled={disableNext}>
+					Finish
+				</button>}
 			</div>
 		</div>
 	);
