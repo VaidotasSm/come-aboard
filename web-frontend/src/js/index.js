@@ -14,6 +14,7 @@ import ErrorBoundary from './features/ErrorBoundry';
 import WizardStepPage from './features/wizard/WizardStepPage';
 import DashboardPage from './features/dashboard/DashboardPage';
 import WizardProgressPage from './features/wizard/WizardProgressPage';
+import AdminDashboardPage from './features/admin/AdminDashboardPage';
 
 console.log('~~~ ', process.env.NODE_ENV);
 console.log('~~~ ', process.env.API_PATH);
@@ -31,6 +32,7 @@ ReactDOM.render(
 					<WizardStepPage path="/wizard/steps/:step"/>
 					<WizardProgressPage path="/wizard/progress"/>
 					<DashboardPage path="/dashboard" />
+					<AdminDashboardPage path="/admin"/>
 					<NotFoundPage default/>
 				</Router>
 			</MainPageLayout>

@@ -29,6 +29,14 @@ export function getDashboard(team) {
 		.then(handleErrorResponses);
 }
 
+export function getUserProgress() {
+	return fetch(`${basePath}/admin/user-progress`, {
+		headers,
+		method: 'get'
+	})
+		.then(handleErrorResponses);
+}
+
 function handleErrorResponses(res) {
 	if (res.status >= 200 && res.status < 300) {
 		return res.json();

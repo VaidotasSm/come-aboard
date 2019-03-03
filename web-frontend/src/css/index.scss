@@ -117,4 +117,10 @@ $title-color: rgba(32, 44, 46, 0.43);
 			margin: auto;
 		}
 	}
-}	
+}
+
+.admin-dashboard-page {
+	.progress-table {
+		cursor: pointer;
+	}
+}

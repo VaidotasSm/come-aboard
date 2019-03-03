@@ -1,6 +1,6 @@
 'use strict';
 
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { Actions, GlobalReducerContext } from '../../utils/GlobalState';
 import { Redirect } from '@reach/router';
 
@@ -13,9 +13,10 @@ export default function DashboardPage() {
 		return <Redirect to="/wizard" noThrow/>;
 	}
 
-	if (!state.dashboard && !state.isLoading && !state.error) {
+	useEffect(() => {
 		Actions.loadDashboard(state.wizard.team, dispatch);
-	}
+	}, []);
+
 	if (state.error) {
 		return <>
 			<div className="title is-2 has-text-centered">
@@ -37,7 +38,7 @@ export default function DashboardPage() {
 				<table className="table">
 					<tbody>
 						{state.dashboard.links.map((link) => (
-							<tr>
+							<tr key={link.uri}>
 								<td><a href={link.uri}>{link.name}</a></td>
 								<td>{link.description}</td>
 							</tr>

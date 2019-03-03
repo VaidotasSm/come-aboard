@@ -94,6 +94,41 @@ export default function mockApi() {
 				})
 			])
 		});
+
+		this.get(`${basePath}/admin/user-progress`, (req) => {
+			return respond([
+				200,
+				{ 'content-type': 'application/javascript' },
+				JSON.stringify({
+					wizards: [
+						{
+							wizardId: 1,
+							user: 'Vaidotas',
+							team: 'Lighthouse',
+							completed: 6,
+							questions: 2,
+							total: 10
+						},
+						{
+							wizardId: 2,
+							user: 'Arunas',
+							team: 'HT Support',
+							completed: 7,
+							questions: 1,
+							total: 15
+						},
+						{
+							wizardId: 3,
+							user: 'Oleg',
+							team: 'LMS',
+							completed: 8,
+							questions: 1,
+							total: 12
+						}
+					]
+				})
+			])
+		});
 	});
 }
 
@@ -107,7 +142,7 @@ function stepItem(item, status = null) {
 
 function respond(response) {
 	return new Promise(resolve => {
-		setTimeout(() => resolve(response), fakeTimeout * 3);
+		setTimeout(() => resolve(response), fakeTimeout);
 	});
 }
 
