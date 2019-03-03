@@ -9,7 +9,8 @@ const ActionTypes = {
 	WIZARD_RESUME: 'WIZARD_RESUME',
 	WIZARD_START_SUCCESS: 'WIZARD_START_SUCCESS',
 	WIZARD_START_ERROR: 'WIZARD_START_ERROR',
-	WIZARD_ITEM_MODIFY: 'WIZARD_ITEM_MODIFY'
+	WIZARD_ITEM_MODIFY: 'WIZARD_ITEM_MODIFY',
+	WIZARD_FINISH: 'WIZARD_FINISH'
 };
 
 const Actions = {
@@ -28,6 +29,11 @@ const Actions = {
 				itemId,
 				status
 			}
+		});
+	},
+	finishWizard(dispatch) {
+		dispatch({
+			type: ActionTypes.WIZARD_FINISH,
 		});
 	}
 };
@@ -64,6 +70,8 @@ function reducer(state, action) {
 		const wizard = { ...state.wizard, steps };
 		return { ...state, wizard, timestamp: new Date()};
 	}
+	case ActionTypes.WIZARD_FINISH:
+		return { ...state, wizardDone: true };
 	default:
 		throw new Error('Unexpected action');
 	}

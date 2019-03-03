@@ -3,7 +3,7 @@
 import React from 'react';
 import { navigate } from '@reach/router';
 
-export default function StepActions({ stepNumber, totalSteps, disableNext }) {
+export default function StepActions({ stepNumber, totalSteps, disableNext, onFinishLater, onFinish }) {
 
 	const handleStepPrev = () => {
 		if (stepNumber <= 0) {
@@ -17,15 +17,12 @@ export default function StepActions({ stepNumber, totalSteps, disableNext }) {
 		}
 		navigate(`/wizard/steps/${stepNumber + 1}`);
 	};
-	const handleFinish = () => {
-		if (disableNext) {
-			return;
-		}
-		navigate('/');
-	};
 
 	return (
 		<div className="step-actions">
+			<div className="finish-later">
+				<button className="button is-danger" onClick={onFinishLater}>Finish Later</button>
+			</div>
 			<div>
 				{stepNumber > 0 &&
 				<button className="button is-primary" onClick={handleStepPrev}>Previous</button>}
@@ -38,7 +35,7 @@ export default function StepActions({ stepNumber, totalSteps, disableNext }) {
 			</div>
 			<div>
 				{(stepNumber === totalSteps - 1) &&
-				<button className="button is-primary" onClick={handleFinish} disabled={disableNext}>
+				<button className="button is-primary" onClick={onFinish} disabled={disableNext}>
 					Finish
 				</button>}
 			</div>
