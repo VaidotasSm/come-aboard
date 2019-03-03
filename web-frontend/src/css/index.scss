@@ -63,8 +63,9 @@ $title-color: rgba(32, 44, 46, 0.43);
 	align-items: center;
 
 	.step-actions {
-		min-width: 80vh;
+		width: 100%;
 		display: flex;
+		flex-wrap: wrap;
 		justify-content: flex-end;
 		div {
 			margin-left: 0.5em;

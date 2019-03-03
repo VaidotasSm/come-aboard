@@ -34,15 +34,13 @@ export default function WizardStepPage(props) {
 				<StepDisplay step={stepObj}/>
 			</div>
 
-			<div>
-				<StepActions
-					stepNumber={stepNumber}
-					totalSteps={state.wizard.steps.length}
-					disableNext={disableNext}
-					onFinishLater={handleFinishLater}
-					onFinish={handleFinish}
-				/>
-			</div>
+			<StepActions
+				stepNumber={stepNumber}
+				totalSteps={state.wizard.steps.length}
+				disableNext={disableNext}
+				onFinishLater={handleFinishLater}
+				onFinish={handleFinish}
+			/>
 		</div>
 	);
 }
