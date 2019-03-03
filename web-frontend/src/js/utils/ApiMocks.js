@@ -51,31 +51,6 @@ const userWizardResponse = (name) => ({
 			]
 		},
 		{
-			name: 'Create and activate your Apple ID',
-			checklist: [
-				stepItem(`Create your account via iCloud using your Harbortouch email (System & Preferences > iCloud > Create Apple ID) `),
-				stepItem(`Sign into the iTunes or an App Store, find a free app, and try to download it`),
-				stepItem(`This will prompt you to sign in with your Apple ID`),
-				stepItem(`Finalize your payment details as listed below`)
-			]
-		},
-		{
-			name: 'Finalize payment details (iTunes, App Store)',
-			checklist: [
-				stepItem(`Select USA for a location in App Store. Full address: 2202 N Irving St, Allentown, PA 18109, USA`),
-				stepItem(`Choose payment method - NONE, and fill-in the following fields: your first/last name; street address: 2202 North Irving Street; city: Allentown; state: PA; ZIP: 18109-9554; phone: (800) 201-0461 (might not be needed)`),
-				stepItem(`In phone verification step, there might be a bug where Apple will tell you your area code (or phone number) is invalid, even though "Lithuania +370" is selected. Use Vilnius office address in the previous step to solve this.`)
-			]
-		},
-		{
-			name: 'Enable 2 Factor authentication',
-			checklist: [
-				stepItem(`https://appleid.apple.com/account/manage`),
-				stepItem(`If you will run into any problems regarding billing information - borrow a test card from Vilius and use it to complete the registration.`)
-			],
-			mustComplete: true
-		},
-		{
 			name: 'Done',
 			description: 'Welcome to our family!'
 		}
