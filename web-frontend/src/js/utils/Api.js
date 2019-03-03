@@ -1,23 +1,38 @@
 'use strict';
 
-import { ActionTypes } from './GlobalState';
+const basePath = process.env.API_PATH;
 
-const basePath = 'http://localhost:8080/api';
+const headers = {
+	'Accept': 'application/json',
+	'Content-Type': 'application/json'
+};
 
 export function crateWizard({ name, team }) {
 	return fetch(`${basePath}/wizard`, {
-	method: 'post',
-	body: JSON.stringify({ name, team })
-})
-	.then((res) => res.json())
-	.then((res) => {
-		return res;
-	});
+		headers,
+		method: 'post',
+		body: JSON.stringify({ name, team })
+	})
+		.then((res) => {
+			return handleErrorResponses(res);
+		})
+		.then((res) => {
+			return res;
+		});
 }
 
 export function getDashboard(team) {
 	return fetch(`${basePath}/dashboard/${team}`, {
+		headers,
 		method: 'get'
 	})
-		.then((res) => res.json());
+		.then(handleErrorResponses);
+}
+
+function handleErrorResponses(res) {
+	if (res.status >= 200 && res.status < 300) {
+		return res.json();
+	} else {
+		return res.json().then((err) => Promise.reject(err));
+	}
 }

@@ -13,13 +13,19 @@ export default function DashboardPage() {
 		return <Redirect to="/wizard" noThrow/>;
 	}
 
-	if (!state.dashboard && !state.isLoading) {
+	if (!state.dashboard && !state.isLoading && !state.error) {
 		Actions.loadDashboard(state.wizard.team, dispatch);
-		return <div className="title is-2 has-text-centered">Loading...</div>
 	}
-
-	if (!state.dashboard || state.isLoading) {
-		return <div className="title is-2 has-text-centered">Loading...</div>
+	if (state.error) {
+		return <>
+			<div className="title is-2 has-text-centered">
+				Could not load dashboard
+			</div>
+			<div>Please try again later.</div>
+		</>;
+	}
+	if (!state.dashboard) {
+		return <div className="title is-2 has-text-centered">Loading...</div>;
 	}
 
 	return (

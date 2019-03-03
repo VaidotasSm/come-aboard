@@ -4,8 +4,9 @@
 	"description": "",
 	"main": "index.js",
 	"scripts": {
-		"start": "parcel ./src/index.html",
-		"build": "parcel build ./src/index.html",
+		"start": "NODE_ENV=development parcel ./src/index.html",
+		"start:staging": "NODE_ENV=staging parcel ./src/index.html",
+		"build": "NODE_ENV=production parcel build ./src/index.html",
 		"test": "echo \"Error: no test specified\" && exit 1"
 	},
 	"author": "",

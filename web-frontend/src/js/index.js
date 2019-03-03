@@ -15,7 +15,11 @@ import WizardStepPage from './features/wizard/WizardStepPage';
 import DashboardPage from './features/dashboard/DashboardPage';
 import WizardProgressPage from './features/wizard/WizardProgressPage';
 
-mockApi();
+console.log('~~~ ', process.env.NODE_ENV);
+console.log('~~~ ', process.env.API_PATH);
+if (process.env.NODE_ENV === 'development') {
+	mockApi();
+}
 
 ReactDOM.render(
 	<ErrorBoundary>

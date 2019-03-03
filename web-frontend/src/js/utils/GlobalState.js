@@ -59,10 +59,10 @@ function reducer(state, action) {
 	console.log('~~~ reducer', action);
 	switch (action.type) {
 	case ActionTypes.WIZARD_START:
-		return { ...state, name: action.value, isLoading: true };
+		return { ...state, error: null, name: action.value, isLoading: true };
 	case ActionTypes.WIZARD_START_SUCCESS:
 		navigate('/wizard');
-		return { ...state, wizard: action.response, isLoading: false };
+		return { ...state, error: null, wizard: action.response, isLoading: false };
 	case ActionTypes.WIZARD_START_ERROR:
 	case ActionTypes.DASHBOARD_LOAD_ERROR:
 		return { ...state, error: action.error, isLoading: false };
@@ -86,12 +86,12 @@ function reducer(state, action) {
 		});
 
 		const wizard = { ...state.wizard, steps };
-		return { ...state, wizard, timestamp: new Date()};
+		return { ...state, error: null, wizard, timestamp: new Date()};
 	}
 	case ActionTypes.WIZARD_FINISH:
-		return { ...state, wizardDone: true };
+		return { ...state, error: null, wizardDone: true };
 	case ActionTypes.DASHBOARD_LOAD_START:
-		return { ...state, isLoading: true };
+		return { ...state, error: null, isLoading: true };
 	case ActionTypes.DASHBOARD_LOAD_SUCCESS:
 		return { ...state, dashboard: action.response, isLoading: false };
 	default:
