@@ -9,7 +9,12 @@ export function crateWizard({ name, team }) {
 		method: 'post',
 		body: JSON.stringify({ name, team })
 	})
-		.then((res) => res.json());
+		.then((res) => res.json())
+		.then((res) => {
+			// console.log('~~~ response', res);
+			// console.log('~~~ response', JSON.stringify(res));
+			return res;
+		});
 }
 
 export function getWizard(name, dispatch) {

@@ -41,6 +41,7 @@ const userWizardResponse = (name) => ({
 		},
 		{
 			name: 'Setup email signature',
+			mustComplete: true,
 			checklist: [
 				stepItem(`Open Safari`),
 				stepItem(`Go to gmail.com`),
