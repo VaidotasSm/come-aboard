@@ -1,17 +1,25 @@
 'use strict';
 
 import React, { useContext } from 'react';
-import { GlobalReducerContext } from '../../utils/GlobalState';
+import { Actions, GlobalReducerContext } from '../../utils/GlobalState';
 import { Redirect } from '@reach/router';
 
 export default function DashboardPage() {
-	const { state } = useContext(GlobalReducerContext);
+	const { state, dispatch } = useContext(GlobalReducerContext);
 	if (!state.name || !state.wizard) {
 		return <Redirect to="/" noThrow/>;
 	}
-
 	if (!state.wizardDone) {
 		return <Redirect to="/wizard" noThrow/>;
+	}
+
+	if (!state.dashboard && !state.isLoading) {
+		Actions.loadDashboard(state.wizard.team, dispatch);
+		return <div className="title is-2 has-text-centered">Loading...</div>
+	}
+
+	if (!state.dashboard || state.isLoading) {
+		return <div className="title is-2 has-text-centered">Loading...</div>
 	}
 
 	return (
@@ -22,18 +30,12 @@ export default function DashboardPage() {
 			<div className="dashboard-links">
 				<table className="table">
 					<tbody>
-						<tr>
-							<td><a href="https://confluence.shift4payments.com">Confluence</a></td>
-							<td>Has all high level information and documentation</td>
-						</tr>
-						<tr>
-							<td><a href="https://jira.shift4payments.com/">JIRA</a></td>
-							<td>All tasks are here</td>
-						</tr>
-						<tr>
-							<td><a href="https://git.shift4payments.com/">GitLab</a></td>
-							<td>This is where our code lives</td>
-						</tr>
+						{state.dashboard.links.map((link) => (
+							<tr>
+								<td><a href={link.uri}>{link.name}</a></td>
+								<td>{link.description}</td>
+							</tr>
+						))}
 					</tbody>
 				</table>
 

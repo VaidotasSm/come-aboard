@@ -32,23 +32,12 @@ const userWizardResponse = (name) => ({
 		},
 		{
 			name: 'Get access to email',
+			mustComplete: true,
 			checklist: [
 				stepItem(`Open Safari`),
 				stepItem(`Go to gmail.com`),
 				stepItem(`Use email/password you got from IT (If not, ask Robert Zibert rzibert@shift4.com )`),
 				stepItem(`Do not allow access to other apps.`)
-			]
-		},
-		{
-			name: 'Setup email signature',
-			mustComplete: true,
-			checklist: [
-				stepItem(`Open Safari`),
-				stepItem(`Go to gmail.com`),
-				stepItem(`Go to Settings > Upload Profile picture.`),
-				stepItem(`Go to Settings > Signature (The template can be copied from another employee)`),
-				stepItem(`Go to Gmail My Account > Sign-in & Security > Enable 2 Factor authentication`),
-				stepItem(` Tick "Insert this signature before quoted text in replies and remove the "--" line that precedes it."`)
 			]
 		},
 		{
@@ -78,6 +67,33 @@ export default function mockApi() {
 				JSON.stringify(userWizardResponse(name))
 			])
 		});
+
+		this.get(`${basePath}/dashboard/:team`, (req) => {
+			return respond([
+				200,
+				{ 'content-type': 'application/javascript' },
+				JSON.stringify({
+					team: req.params.team,
+					links: [
+						{
+							name: 'Confluence',
+							uri: 'https://confluence.shift4payments.com',
+							description: `Has all high level information and documentation`
+						},
+						{
+							name: 'JIRA',
+							uri: 'https://jira.shift4payments.com/',
+							description: `All tasks are here`
+						},
+						{
+							name: 'Gitlab',
+							uri: 'https://git.shift4payments.com/',
+							description: `This is where our code lives`
+						}
+					]
+				})
+			])
+		});
 	});
 }
 
@@ -91,7 +107,7 @@ function stepItem(item, status = null) {
 
 function respond(response) {
 	return new Promise(resolve => {
-		setTimeout(() => resolve(response), fakeTimeout);
+		setTimeout(() => resolve(response), fakeTimeout * 3);
 	});
 }
 

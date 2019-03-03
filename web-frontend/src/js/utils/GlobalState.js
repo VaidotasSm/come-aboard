@@ -10,7 +10,10 @@ const ActionTypes = {
 	WIZARD_START_SUCCESS: 'WIZARD_START_SUCCESS',
 	WIZARD_START_ERROR: 'WIZARD_START_ERROR',
 	WIZARD_ITEM_MODIFY: 'WIZARD_ITEM_MODIFY',
-	WIZARD_FINISH: 'WIZARD_FINISH'
+	WIZARD_FINISH: 'WIZARD_FINISH',
+	DASHBOARD_LOAD_START: 'DASHBOARD_LOAD_START',
+	DASHBOARD_LOAD_SUCCESS: 'DASHBOARD_LOAD_SUCCESS',
+	DASHBOARD_LOAD_ERROR: 'DASHBOARD_LOAD_ERROR',
 };
 
 const Actions = {
@@ -35,18 +38,33 @@ const Actions = {
 		dispatch({
 			type: ActionTypes.WIZARD_FINISH,
 		});
+	},
+	loadDashboard(team, dispatch) {
+		dispatch({
+			type: ActionTypes.DASHBOARD_LOAD_START,
+		});
+		Api.getDashboard(team)
+			.then((response) => {
+				dispatch({
+					type: ActionTypes.DASHBOARD_LOAD_SUCCESS,
+					response
+				});
+			})
+			.catch((error) => dispatch({ type: ActionTypes.DASHBOARD_LOAD_ERROR, error }));
+
 	}
 };
 
 function reducer(state, action) {
+	console.log('~~~ reducer', action);
 	switch (action.type) {
 	case ActionTypes.WIZARD_START:
-	case ActionTypes.WIZARD_RESUME:
 		return { ...state, name: action.value, isLoading: true };
 	case ActionTypes.WIZARD_START_SUCCESS:
 		navigate('/wizard');
 		return { ...state, wizard: action.response, isLoading: false };
 	case ActionTypes.WIZARD_START_ERROR:
+	case ActionTypes.DASHBOARD_LOAD_ERROR:
 		return { ...state, error: action.error, isLoading: false };
 	case ActionTypes.WIZARD_ITEM_MODIFY: {
 		const itemId = action.value.itemId;
@@ -72,6 +90,10 @@ function reducer(state, action) {
 	}
 	case ActionTypes.WIZARD_FINISH:
 		return { ...state, wizardDone: true };
+	case ActionTypes.DASHBOARD_LOAD_START:
+		return { ...state, isLoading: true };
+	case ActionTypes.DASHBOARD_LOAD_SUCCESS:
+		return { ...state, dashboard: action.response, isLoading: false };
 	default:
 		throw new Error('Unexpected action');
 	}

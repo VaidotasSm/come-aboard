@@ -6,24 +6,18 @@ const basePath = 'http://localhost:8080/api';
 
 export function crateWizard({ name, team }) {
 	return fetch(`${basePath}/wizard`, {
-		method: 'post',
-		body: JSON.stringify({ name, team })
-	})
-		.then((res) => res.json())
-		.then((res) => {
-			// console.log('~~~ response', res);
-			// console.log('~~~ response', JSON.stringify(res));
-			return res;
-		});
+	method: 'post',
+	body: JSON.stringify({ name, team })
+})
+	.then((res) => res.json())
+	.then((res) => {
+		return res;
+	});
 }
 
-export function getWizard(name, dispatch) {
-	fetch(`${basePath}/wizard/${name}`, {
+export function getDashboard(team) {
+	return fetch(`${basePath}/dashboard/${team}`, {
 		method: 'get'
 	})
-		.then((res) => res.json())
-		.then((response) => {
-			dispatch({ type: ActionTypes.WIZARD_START_SUCCESS, response });
-		})
-		.catch((error) => dispatch({ type: ActionTypes.WIZARD_START_ERROR, error }));
+		.then((res) => res.json());
 }
