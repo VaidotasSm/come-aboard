@@ -7,12 +7,12 @@ $title-color: rgba(32, 44, 46, 0.43);
 
 .main-layout {
 	display: grid;
-	grid-template-columns: repeat(6, 1fr);
+	grid-template-columns: repeat(10, 1fr);
 	grid-auto-rows: minmax(50px, auto);
 	grid-template-areas:
-	  "h h h h h h"
-	  "a c c c c b"
-	  ". c c c c .";
+	  "h h h h h h h h h h"
+	  "a c c c c c c c c b"
+	  ". c c c c c c c c .";
 
 	.main-layout-item.header {
 		grid-area: h;
@@ -32,7 +32,7 @@ $title-color: rgba(32, 44, 46, 0.43);
 	}
 
 	.main-layout-item.content {
-		padding-top: 1.5em;
+		padding: 1em 1em 0 1em;
 		border-top: 2px solid lightgray;
 
 		grid-area: c;
@@ -74,11 +74,14 @@ $title-color: rgba(32, 44, 46, 0.43);
 
 .step-display {
 	margin: 1em 0 2em 0;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
 }
 
 .step-items {
 	display: grid;
-	grid-template-columns: 2fr 1fr;
+	grid-template-columns: 5fr 1fr;
 
 	.step-item-actions {
 		display: flex;

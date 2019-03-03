@@ -6,7 +6,7 @@ import StepItem from './StepItem';
 export default function StepDisplay({ step }) {
 	return (
 		<div className="step-display">
-			<div className="title is-2">{step.name}</div>
+			<div className="title is-4">{step.name}</div>
 			<div>
 				<p>{step.description}</p>
 			</div>

@@ -34,7 +34,6 @@ export default function StepActions({ stepNumber, totalSteps }) {
 			<div>
 				{(stepNumber === totalSteps - 1) &&
 				<button className="button is-primary" onClick={handleFinish}>Finish</button>}
-
 			</div>
 		</div>
 	);
