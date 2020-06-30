@@ -1,5 +1,5 @@
-# Onboarding System
-
+# Hackaton - Onboarding System
+Trying React Hooks for the first time.
 
 # Directories
 * `api/` - backend part.
